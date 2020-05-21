@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- 定义注解驱动Controller方法处理适配器 ,注：该适配器必须声明在<mvc:annotation-driven />之前，否则不能正常处理参数类型的转换 -->
+    <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" >
+                    <property name="objectMapper">
+                        <bean class="com.fasterxml.jackson.databind.ObjectMapper">
+                            <property name="dateFormat">
+                                <bean class="java.text.SimpleDateFormat">
+                                    &lt;!&ndash; 设置全局返回JSON到前端时日期格式化 &ndash;&gt;
+                                    <constructor-arg type="java.lang.String" value="yyyy-MM-dd HH:mm:ss"/>
+                                </bean>
+                            </property>
+                        </bean>
+                    </property>
+                </bean>
+            </list>
+        </property>
+    </bean>-->
+
+    <!-- 开启扫描 -->
+    <context:component-scan base-package="cn.edu.ncu.controller" />
+    <!-- 开启扫描(包含其他) -->
+    <!--<mvc:annotation-driven conversion-service="converters">-->
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <!-- rest返回String中文乱码解决 -->
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <constructor-arg name="defaultCharset" value="utf-8"/>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <!-- 配置全局上传设置 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 设置默认编码 -->
+        <property name="defaultEncoding" value="utf-8"></property>
+        <!-- 上传文件最大大小5M-->
+        <property name="maxUploadSize" value="5242880"></property>
+    </bean>
+    <!-- 转发视图页面添加前后缀 -->
+    <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        &lt;!&ndash; action中return的页面的前缀 &ndash;&gt;
+        <property name="prefix" value="/page/" />
+        &lt;!&ndash; action中return的页面的后缀 &ndash;&gt;
+        <property name="suffix" value=".html" />
+    </bean>-->
+
+
+<!--
+    &lt;!&ndash; 配置全局日期转换器 ,前台进后台&ndash;&gt;
+    <bean id="converters" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+            <list>
+                <bean class="com.seecen.ssm.util.CustomDateEdtor"></bean>
+            </list>
+        </property>
+    </bean>-->
+
+</beans>
