@@ -1,8 +1,8 @@
 package cn.edu.ncu.service.impl;
 
-import cn.edu.ncu.dao.IimgDao;
+import cn.edu.ncu.dao.IImgDao;
 import cn.edu.ncu.pojo.Img;
-import cn.edu.ncu.service.IimgService;
+import cn.edu.ncu.service.IImgService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,10 +12,10 @@ import org.springframework.stereotype.Service;
  * @Description
  */
 @Service
-public class ImgServiceImpl implements IimgService {
+public class ImgServiceImpl implements IImgService {
 
     @Autowired
-    private IimgDao imgDao;
+    private IImgDao imgDao;
 
     @Override
     public void save(Img img) {

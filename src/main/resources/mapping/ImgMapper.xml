@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.edu.ncu.dao.IimgDao">
-    <resultMap id="imgMapper" type="cn.edu.ncu.pojo.Img">
+<mapper namespace="cn.edu.ncu.dao.IImgDao">
+    <resultMap id="imgMap" type="cn.edu.ncu.pojo.Img">
         <id column="IMG_ID" jdbcType="NUMERIC" property="imgId"/>
         <result column="IMG_PATH" jdbcType="VARCHAR" property="imgPath"/>
-        <result column="AUTHOR" jdbcType="VARCHAR" property="author"/>
+        <result column="AUTHOR_ID" jdbcType="NUMERIC" property="authorId"/>
         <result column="VALID" jdbcType="NUMERIC" property="valid"/>
     </resultMap>
+
     <sql id="Base_Column_List">
-        IMG_ID, IMG_PATH, AUTHOR, VALID
+        IMG_ID, IMG_PATH, AUTHOR_ID, VALID
     </sql>
 
     <insert id="save" parameterType="cn.edu.ncu.pojo.Img">
-        INSERT INTO T_IMG(IMG_ID, IMG_PATH, AUTHOR, VALID)
-        VALUES(SEQ_IMG.Nextval, #{imgPath,jdbcType=VARCHAR}, 'Javee', 1)
+        INSERT INTO T_IMG(IMG_ID, IMG_PATH, AUTHOR_ID, VALID)
+        VALUES(SEQ_IMG.Nextval, #{imgPath,jdbcType=VARCHAR}, #{authorId,jdbcType=NUMERIC}, 1)
     </insert>
 
 </mapper>

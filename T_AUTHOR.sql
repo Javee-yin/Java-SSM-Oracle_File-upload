@@ -1,12 +1,11 @@
 ---------------------------------------------
 -- Export file for user JAVEE              --
--- Created by Javee on 2020/5/25, 14:33:22 --
+-- Created by Javee on 2020/5/25, 14:34:02 --
 ---------------------------------------------
-
-create table T_IMG
+create table T_AUTHOR
 (
-  img_id    NUMBER not null,
-  img_path  VARCHAR2(100),
-  author_id NUMBER,
+  author_id NUMBER not null,
+  name      VARCHAR2(20 CHAR),
+  password  VARCHAR2(20 CHAR),
   valid     CHAR(1) default 1
 )

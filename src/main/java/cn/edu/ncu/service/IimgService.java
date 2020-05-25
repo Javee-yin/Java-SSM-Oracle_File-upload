@@ -7,6 +7,6 @@ import cn.edu.ncu.pojo.Img;
  * @Date 2020/5/18 16:26
  * @Description
  */
-public interface IimgService {
+public interface IImgService {
     void save(Img img);
 }

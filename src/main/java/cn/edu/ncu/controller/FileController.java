@@ -1,9 +1,9 @@
 package cn.edu.ncu.controller;
 
 
+import cn.edu.ncu.pojo.Author;
 import cn.edu.ncu.pojo.Img;
-import cn.edu.ncu.service.IimgService;
-import com.alibaba.druid.support.http.util.IPAddress;
+import cn.edu.ncu.service.IImgService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,12 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.jws.WebParam;
 import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.InetAddress;
-import java.net.URLEncoder;
 import java.util.UUID;
 
 /**
@@ -29,10 +28,10 @@ import java.util.UUID;
 public class FileController {
 
     @Autowired
-    private IimgService imgService;
+    private IImgService imgService;
 
     @PostMapping("/upload.action")
-    public ModelAndView upload(MultipartFile file) throws IOException {
+    public ModelAndView upload(MultipartFile file, HttpServletRequest request) throws IOException {
         String fileName = file.getOriginalFilename();
         System.out.println(fileName);
 
@@ -55,6 +54,8 @@ public class FileController {
 
         Img img = new Img();
         img.setImgPath(fileUniqueName);
+        Author author = (Author)request.getSession().getAttribute("user");
+        img.setAuthorId(author.getAuthorId());
 
         imgService.save(img);
 

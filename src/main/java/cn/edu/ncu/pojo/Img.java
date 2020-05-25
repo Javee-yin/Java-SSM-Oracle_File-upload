@@ -10,7 +10,7 @@ public class Img {
 
     private String imgPath;
 
-    private String author;
+    private Integer authorId;
 
     private Integer valid;
 
@@ -30,12 +30,12 @@ public class Img {
         this.imgPath = imgPath;
     }
 
-    public String getAuthor() {
-        return author;
+    public Integer getAuthorId() {
+        return authorId;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setAuthorId(Integer authorId) {
+        this.authorId = authorId;
     }
 
     public Integer getValid() {

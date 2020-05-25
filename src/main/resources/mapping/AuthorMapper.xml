@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.ncu.dao.IAuthorDao">
+    <resultMap id="authorMap" type="cn.edu.ncu.pojo.Author">
+        <id column="AUTHOR_ID" jdbcType="NUMERIC" property="authorId"/>
+        <result column="NAME" jdbcType="VARCHAR" property="name"/>
+        <result column="PASSWORD" jdbcType="VARCHAR" property="password"/>
+        <result column="VALID" jdbcType="NUMERIC" property="valid"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        AUTHOR_ID, NAME, PASSWORD, VALID
+    </sql>
+
+    <insert id="add" parameterType="cn.edu.ncu.pojo.Author">
+        INSERT INTO T_AUTHOR (author_id, NAME, Password, valid)
+        VALUES(seq_author.nextval, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 1)
+    </insert>
+
+    <select id="findByName" parameterType="String" resultMap="authorMap">
+        SELECT * FROM T_AUTHOR WHERE NAME = #{name,jdbcType=VARCHAR}
+    </select>
+
+</mapper>

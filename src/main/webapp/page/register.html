@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>开始注册</title>
+    <style>
+        form{
+            width: 500px;
+            margin: 100px auto;
+            padding-left: 150px;
+        }
+
+        input[type=text], input[type=password]{
+            font-size: 1.0em;
+            width: 200px;
+            height: 30px;
+            margin-bottom: 20px;
+        }
+
+        input[type=submit]{
+            width: 200px;
+            height: 40px;
+            background-color: #0088FF;
+            border: none;
+            color: #FFF;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<form action="http://localhost:8080/user/register.action" method="post">
+    <input type="text" name="name"><br>
+    <input type="password" name="password"><br>
+    <input type="submit" value="注册">
+</form>
+</body>
+</html>

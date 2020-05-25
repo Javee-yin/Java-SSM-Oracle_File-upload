@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>成功上传</title>
+    <script type="application/javascript" src="../js/jquery.js"></script>
     <style>
         *{
             margin: 0;
@@ -25,9 +26,18 @@
             font-size: 20px;
             color: #00F;
         }
+
+        #welcome{
+            color: #000;
+            font-weight: bold;
+            display: block;
+            position: absolute;
+            right: 20px;
+        }
     </style>
 </head>
 <body>
+<span id="welcome"></span>
 <div id="background">
     <div id="word1">引用链接:</div>
     <div id="show1"></div>
@@ -38,6 +48,12 @@
 </div>
 </body>
 <script>
+    $(function () {
+        $.get("/user/getUserName.action",function(res){
+            document.getElementById('welcome').innerHTML=res + "，欢迎您！";
+        },"text");
+    });
+
     /**
      * [获取url中的图片获取地址]
      * 示例URL:http://http://localhost:8080/page/success.html?address=http://192.168.137.1:8080/file/image.action?imgPath=d94e35b9a81149d1bac03b4bfa9830bb.jpeg
